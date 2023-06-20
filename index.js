@@ -7,11 +7,8 @@ let nombre, apellido, email;
 
 if (usuario === true) {
   nombre = prompt("Ingrese su nombre");
-  console.log(nombre);
   apellido = prompt("Ingrese su apellido");
-  console.log(apellido);
   email = prompt("Ingrese su email");
-  console.log(email);
   prompt(
     "Bienvenido " +
       nombre +
@@ -22,8 +19,26 @@ if (usuario === true) {
       "\nGracias por sumarte!"
   );
 }
+//Constructora
+/*function Persona(nombre,apellido,fechaNacimiento){
+  this.nombre = nombre
+  this.apellido = apellido
+  this.fechaNacimiento = fechaNacimiento
+}
+const persona = new Persona(nombre, apellido, email)
+console.log(persona)*/
+//Pagos
+const precioUnidad = 200;
+let suma = 0,continuar
+do {
+  prompt("Seleccione su producto")
+  suma++
+  continuar = prompt("¿Desea seleccionar otro producto? (S/N)")
+} while (continuar === "S");
 
-let medio=prompt("Seleccione su medio de pago.\n1.Efectivo - 2.Debito - 3.Credito - 4.Qr")
+console.log("La suma de los productos seleccionados es: " + suma);
+
+let medio=Number( prompt("Seleccione su medio de pago:2\n1.Efectivo - 2.Debito - 3.Credito - 4.Qr"))
 let pago;
 switch (medio) {
   case 1:
@@ -42,22 +57,27 @@ switch (medio) {
     alert("No se reconoce medio de pago") ;
     break;
 }
-function descuentoPorDocena(cantidadSelecionada) {
-  if (1 >= cantidadSelecionada / 12 < 2) {
+function descuentoPorDocena(cantidadSeleccionada) {
+  if (1 >= cantidadSeleccionada / 12 < 2) {
     return 0.075;
-  } else if (2 >= cantidadSelecionada / 12 < 3) {
+  } else if (2 >= cantidadSeleccionada / 12 < 3) {
     return 0.075;
-  } else if (3 >= cantidadSelecionada / 12 < 4) {
+  } else if (3 >= cantidadSeleccionada / 12 < 4) {
     return 0.1;
-  } else if (4 >= cantidadSelecionada / 12 > 10) {
+  } else if (4 >= cantidadSeleccionada / 12 > 10) {
     return 0.2;
   } else {
     return 1;
   }
 }
-const precioUnidad = 200;
-function mediosDePago(medio, cantidad) {
+cantidad=suma
+function pagos(medio, cantidad) {
   if (medio === "efectivo") {
     return precioUnidad * cantidad * descuentoPorDocena(cantidad);
   }
+  else{
+    return precioUnidad * cantidad;
+  }
 }
+pagos(pago,cantidad)
+
