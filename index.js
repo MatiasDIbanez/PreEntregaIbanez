@@ -9,7 +9,7 @@ if (usuario === true) {
   nombre = prompt("Ingrese su nombre");
   apellido = prompt("Ingrese su apellido");
   email = prompt("Ingrese su email");
-  prompt(
+  confirm(
     "Bienvenido " +
       nombre +
       " " +
@@ -26,7 +26,8 @@ if (usuario === true) {
   this.fechaNacimiento = fechaNacimiento
 }
 const persona = new Persona(nombre, apellido, email)
-console.log(persona)*/
+console.log(persona)
+ususariois*/
 //Pagos
 const precioUnidad = 200;
 let suma = 0,continuar
@@ -59,13 +60,13 @@ switch (medio) {
 }
 function descuentoPorDocena(cantidadSeleccionada) {
   if (1 >= cantidadSeleccionada / 12 < 2) {
-    return 0.075;
+    return 0.925;
   } else if (2 >= cantidadSeleccionada / 12 < 3) {
-    return 0.075;
+    return 0.925;
   } else if (3 >= cantidadSeleccionada / 12 < 4) {
-    return 0.1;
+    return 0.9;
   } else if (4 >= cantidadSeleccionada / 12 > 10) {
-    return 0.2;
+    return 0.8;
   } else {
     return 1;
   }
