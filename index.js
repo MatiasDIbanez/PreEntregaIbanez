@@ -76,9 +76,11 @@ function pagos(medio, cantidad) {
   if (medio === "efectivo") {
     return precioUnidad * cantidad * descuentoPorDocena(cantidad);
   }
+  else if (medio==="tarjeta"){
+   
+  }
   else{
     return precioUnidad * cantidad;
   }
 }
 pagos(pago,cantidad)
-
