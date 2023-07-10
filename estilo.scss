@@ -54,7 +54,7 @@ header {
   min-height: 110px;
   
 }
-.backMenu{
+.back{
   width: 100%;
   background-color: #073e53;
   header {
@@ -290,9 +290,10 @@ header {
         .tex{
           height:100%;
           width: 100%;
-          font-family: productos;
+          font-family: textos;
           font-size: 20px;
           text-align: center;
+          padding-top: 10px;
           padding-inline:10px;
           margin-inline: auto;
           border-top: 20px;
@@ -301,7 +302,8 @@ header {
           .info{
             height: 60px;
             display: flex;
-            align-self: self-end;
+            justify-self:center;
+            
             .pic{
               border-radius: 50%;
               width: 40px;
@@ -320,7 +322,7 @@ header {
       }
       .resenias-item:hover {
         scale: 1.1;
-        transition: 1s;
+        transition: 0.5s;
     }
     @media only screen and (min-width: 320px) and (max-width: 768px){
       margin-bottom: 10px;
@@ -854,7 +856,6 @@ header {
     margin: auto;
     padding: 10px;
     text-align: start;
-    font-style: italic;
     grid-area: contacto;
     text-align: center;
     font-size: 18px;
@@ -882,7 +883,16 @@ header {
       background-color: #fbbe63;
     }
   }
+  .contacto *:focus{
+    background-color: #08678c67;
+    transition: 0.5s;
+  }
+  .contacto *:invalid{
+    background-color: #e91f1f9c;
+  }
+  
 }
+
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .encabezado-contacto {
     h1 {
