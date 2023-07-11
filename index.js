@@ -22,8 +22,7 @@ function Persona(nombre, apellido, fechaNacimiento) {
  //let usuarios = [{ persona }];
 
 //Productos
-const categoriasProductos = [];
-function ItemConstructora(nombre, categoria, stock) {
+function ItemConstructora(nombre, categoria, stock,precio) {
   this.nombre = nombre;
   this.categoria = categoria;
   this.stock = stock;
@@ -59,7 +58,6 @@ let productos = [
   item4,
   item5,
   item6,
-  item6,
   item7,
   item8,
   item9,
@@ -80,22 +78,6 @@ let productos = [
   item24,
 ];
 
-//Filtrado por categoria
-// const categoriaClasica = productos.filter(
-//   (elemento) => elemento.categoria === "Clasica"
-// );
-// const categoriaEspeciales = productos.filter(
-//   (elemento) => elemento.categoria === "Especial"
-// );
-// const categoriaVeganas = productos.filter(
-//   (elemento) => elemento.categoria === "Vegana"
-// );
-// const categoriaDulce =productos.filter(
-//   (elemento) => elemento.categoria==="Dulce"
-// )
-// const categoriaPostres = productos.filter(
-//   (elemento) => elemento.categoria === "Postre"
-// );
 //Funcion filtrado
 function FilterCategoria(categoria){
   let filtrado=[]
@@ -103,63 +85,33 @@ function FilterCategoria(categoria){
     (elemento) => elemento.categoria.toLowerCase() === categoria.toLowerCase()
     
   );
-}
-function Categorias(categorias){
-  for (let index=0;index<categoriaFiltrada.length;index++) {
-         console.log(categorias[index].categoria)
-       }
-}    
+} 
 //Funcion muestra
 function MuestraCategoria(categoriaFiltrada){
+  muestra=[]
   for (let index=0;index<categoriaFiltrada.length;index++) {
-         console.log(categoriaFiltrada[index].nombre)
+        muestra[index]= categoriaFiltrada[index].nombre
        }
+       return muestra;
 }    
 //Seleccion de productos
 let suma = 0,
-  continuar;
+ continuar;
+
 do{
-  let  categoriaSeleccionada=prompt("---Seleccione su producto---\nClasica\nEspecial\nVegana\nDulce\nPostre");
+  let cantidad=0;
+  let  categoriaSeleccionada=prompt("---Seleccione una categoria---\nClasica\nEspecial\nVegana\nDulce\nPostre");
+ let productos= MuestraCategoria(FilterCategoria(categoriaSeleccionada))
+ do{ produc=prompt(`Elija su Producto:\n ${productos}`)
+  if(productos.includes(produc)){
+    cantidad=Number(prompt('Elija la cantidad que desea'))
+    suma=suma+cantidad
 
-  MuestraCategoria(FilterCategoria(categoriaSeleccionada)
-  alert(`La Categoria ${categoriaSeleccionada} no fue encontrada.`)
- 
-  
-  continuar  = prompt("¿Desea seleccionar otro producto? (S/N)");
+  }
+}while(confirm('Seguir en la misma categoria?'));
+ continuar  = prompt("¿Desea seleccionar otro categoria? (S/N)");
    } while (continuar === "S");
-const precioUnidad = 200;
 
-// do {
-//   let cate=prompt("---Seleccione su producto---\nClasica\nEspecial\nVegana\nDulce\nPostre");
-//   if (cate==="Clasica"){
-//     for (let index=0;index<categoriaClasica.length;index++) {
-//       console.log(categoriaClasica[index].nombre)
-//     }
-//   }
-//   else if (cate==="Especial"){
-//     for (let index=0;index<categoriaEspeciales.length;index++) {
-//       console.log(categoriaEspeciales[index].nombre)
-//     }
-//   }
-//   else if (cate==="Vegana"){
-//     for (let index=0;index<categoriaVeganas.length;index++) {
-//       console.log(categoriaVeganas[index].nombre)
-//     }
-//   } 
-//   else if (cate==="Dulce"){ 
-//     for (let index=0;index<categoriaDulce.length;index++) {
-//       console.log(categoriaDulce[index].nombre)
-//     }
-//   }
-//   else if(cate==="Postre"){
-//     for (let index=0;index<categoriaPostres.length;index++) {
-//       console.log(categoriaPostres[index].nombre)
-//     }
-//   }
-
-//   suma++;
-//   continuar  = prompt("¿Desea seleccionar otro producto? (S/N)");
-// } while (continuar === "S");
 //Pagos
 console.log("La suma de los productos seleccionados es: " + suma);
 
@@ -199,13 +151,14 @@ function descuentoPorDocena(cantidadSeleccionada) {
     return 1;
   }
 }
-cantidad = suma;
+const precioUnidad=220;
 function pagos(medio, cantidad) {
   if (medio === "efectivo") {
     return precioUnidad * cantidad * descuentoPorDocena(cantidad);
-  } else if (medio === "tarjeta") {
-  } else {
+  }
+  else {
     return precioUnidad * cantidad;
   }
 }
-pagos(pago, cantidad);
+let precioAPagar=pagos(pago, suma)
+alert(`El precio a pagar es $${precioAPagar}`)
