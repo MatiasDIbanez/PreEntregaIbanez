@@ -646,6 +646,11 @@ header {
         color: #220c10;
         opacity: 0;
       }
+      .agregar{
+        background-color: #fbbe63;
+        align-self: center;
+      }
+      
     }
     .item-producto:hover {
       filter: grayscale(0.4);
@@ -660,6 +665,7 @@ header {
         opacity: 1;
         transition: 0.5s;
       }
+
     }
   }
 }

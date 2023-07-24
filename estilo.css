@@ -673,6 +673,10 @@ header {
   color: #220c10;
   opacity: 0;
 }
+.productos .producto .item-producto .agregar {
+  background-color: #fbbe63;
+  align-self: center;
+}
 .productos .producto .item-producto:hover {
   filter: grayscale(0.4);
   scale: 1.05;
