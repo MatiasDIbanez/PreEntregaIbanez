@@ -598,6 +598,13 @@ header {
     top: 0;
     // margin-right: -100%;
     // opacity: 0;
+    svg{
+      color: #fbbe63;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      margin-block: auto;
+    }
   }
   .producto-menu {
     margin: 10px;

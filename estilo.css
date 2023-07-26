@@ -621,6 +621,13 @@ header {
   position: sticky !important;
   top: 0;
 }
+.productos .carrito-menu svg {
+  color: #fbbe63;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-block: auto;
+}
 .productos .producto-menu {
   margin: 10px;
   max-width: 850px;
