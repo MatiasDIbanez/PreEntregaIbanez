@@ -69,7 +69,18 @@ function agregarCarrito(event) {
 }
 const carrito=[];
 
+function agregarAlCarritoClicked(event){
+  let botonCarrito = event.target;
+  let item = botonCarrito.parentElement;
+  var titulo = item.getElementsByClassName('titulo-item')[0].innerText;
+  var precio = item.getElementsByClassName('precio-item')[0].innerText;
+  var imagenSrc = item.getElementsByClassName('img-item')[0].src;
+  console.log(imagenSrc);
 
+  agregarItemAlCarrito(titulo, precio, imagenSrc);
+
+  hacerVisibleCarrito();
+}
 //  let suma.onclick = function sumaClick(){
 //      total=total+1
 //      contador.innerHTML=`<p>${total}}</p>`
@@ -82,3 +93,4 @@ const carrito=[];
 //          console.log(total)
 //   }
 //  }
+//Funciòn que controla el boton clickeado de agregar al carrito
