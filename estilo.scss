@@ -626,6 +626,7 @@ header {
       background-color: #fbbe63;
       width: 100%;
       .itemCarrito{
+        display: grid;
       .productosCarrito{
         width: 70%;
         grid-column: 1/2;
@@ -698,6 +699,11 @@ header {
       .descripcion {
         color: #220c10;
         opacity: 0;
+      }
+      .cantidad{
+        display: flex;
+        background-color: #08678c;
+        justify-content: center;
       }
       .agregar{
         background-color: #fbbe63;

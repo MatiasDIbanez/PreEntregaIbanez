@@ -647,6 +647,9 @@ header {
   background-color: #fbbe63;
   width: 100%;
 }
+.productos .carrito-menu #carritoBar .itemCarrito {
+  display: grid;
+}
 .productos .carrito-menu #carritoBar .itemCarrito .productosCarrito {
   width: 70%;
   grid-column: 1/2;
@@ -720,6 +723,11 @@ header {
 .productos .producto .item-producto .descripcion {
   color: #220c10;
   opacity: 0;
+}
+.productos .producto .item-producto .cantidad {
+  display: flex;
+  background-color: #08678c;
+  justify-content: center;
 }
 .productos .producto .item-producto .agregar {
   background-color: #fbbe63;
