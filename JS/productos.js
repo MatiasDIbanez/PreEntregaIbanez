@@ -110,7 +110,7 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
   })
    function sumaClick(){
           total=total+1
-          cantidadValor.innerHTML=`<p>${total}</p>`
+          cantidadValor.innerHTML=`<p class="totalProduc">${total}</p>`
           console.log(total)
     }
     let botonResta=document.querySelectorAll(".fa-minus");
@@ -118,9 +118,11 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
     resta.addEventListener("click", restaClick);
   })
    function restaClick(){
-          total=total-1
-          cantidadValor.innerHTML=`<p>${total}</p>`
+    if (total>0){
+       total=total-1
+          cantidadValor.innerHTML=`<p class="totalProduc">${total}</p>`
           console.log(total)
+        }  
      }
 // function sumarProductoAlCarritoMenu(carrito) {
 //   //Traemos a el div del carrito

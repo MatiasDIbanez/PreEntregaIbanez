@@ -728,6 +728,13 @@ header {
   display: flex;
   background-color: #08678c;
   justify-content: center;
+  height: 20px;
+}
+.productos .producto .item-producto .cantidad .totalProduc {
+  height: 20px;
+  align-items: center;
+  color: #fbbe63;
+  text-align: start;
 }
 .productos .producto .item-producto .agregar {
   background-color: #fbbe63;
