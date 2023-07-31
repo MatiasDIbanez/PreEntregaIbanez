@@ -1,3 +1,4 @@
+
 * {
   padding: 0;
   margin: 0;
@@ -584,7 +585,9 @@ header {
   max-width: 1200px;
   margin-inline: auto;
   .carrito-menu{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
     width: 35%;
     margin-inline: auto;
     margin-top: 10px;
@@ -593,17 +596,44 @@ header {
     z-index: 1;
     margin-bottom: auto;
     background-color: #073d53d3;
-    height: 200px;
+    height: auto;
     position: sticky!important;
     top: 0;
     // margin-right: -100%;
     // opacity: 0;
-    svg{
-      color: #fbbe63;
-      align-items: center;
-      width: 30px;
-      height: 30px;
+    .encabezadoCarrito{
+      display: grid;
+      height: 50px;
       margin-block: auto;
+      width: 100%;
+      grid-row: 1;
+      grid-column: 1/4;
+      justify-content: space-around;
+      align-items: center;
+      svg{
+        grid-column: 1/2;
+      }
+      #suPedido{
+        grid-column:2/4 ;
+        grid-row: 1;
+      }
+    }
+    
+    #carritoBar{
+      display: grid;
+      grid-row: auto;
+      grid-column: 1/4;
+      background-color: #fbbe63;
+      width: 100%;
+      .itemCarrito{
+      .productosCarrito{
+        width: 70%;
+        grid-column: 1/2;
+      }
+      .info{
+        width: 30%;
+        grid-column: 3/4;
+      }}
     }
   }
   .producto-menu {
@@ -1026,3 +1056,4 @@ header {
     transition: all 300ms ease;
   }
 }
+
