@@ -93,7 +93,6 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
  //Definimos el innerHTML del elemento con una plantilla de texto
   itemCarritoContenido.innerHTML = `
   <div class="productosCarrito">
-   <div class="categoria-i">${categoria}</div>
     <div class="productosCarrito">${nombre}</div>
   </div>
   <div class="info">+Cantidad-</div>
@@ -106,7 +105,7 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
   let cantidadValor=document.querySelector(".cantidadValor")
   let botonSuma=document.querySelectorAll(".fa-plus");
   botonSuma.forEach((suma) => {
-    suma.addEventListener("click", sumaClick);
+    suma.addEventListener("click", sumaClick());
   })
    function sumaClick(){
           total=total+1

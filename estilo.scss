@@ -628,7 +628,9 @@ header {
       .itemCarrito{
         display: grid;
       .productosCarrito{
-        width: 70%;
+        padding-inline: 10px;
+        padding-bottom: 1px;
+        width: 100%;
         grid-column: 1/2;
       }
       .info{
@@ -686,35 +688,48 @@ header {
       height: 238px;
       box-shadow: 5px 5px 8px #073e53;
       position: relative;
+      display: grid;
+      grid-template-rows: 6;
       p {
         width: auto;
-        color: #220c10;
+        grid-row: 1;
+        color: #000000;
         font-family: titulos;
         text-shadow: 1px 1px 2px #e7e6f6;
         font-size: 28px;
-        padding-top: 35px;
+        padding-top: 25px;
         text-align: center;
         align-self: center;
       }
       .descripcion {
+        grid-row: 2/3;
         color: #220c10;
         opacity: 0;
       }
       .cantidad{
+        width: 50%;
+        margin-inline: auto;
         display: flex;
         background-color: #08678c;
-        justify-content: center;
-        height: 20px;
-        .totalProduc{
-          height: 20px;
-          align-items: center;
-          color:#fbbe63;
-          text-align: start;
+        justify-content: space-around;
+        height: 25px;
+        grid-row: 3/5;
+        .cantidadValor{
+          background-color: #e7e6f6;
+          width: 30%;
+          word-wrap: break-word;
+          .totalProduc{
+            padding-top: 0;
+          font-size:medium;
+          color:#000000;
         }
+        }
+        
       }
       .agregar{
         background-color: #fbbe63;
         width: 100%;
+        grid-row: 5/6;
       }
       
     }
