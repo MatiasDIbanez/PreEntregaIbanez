@@ -30,7 +30,7 @@ const item20 = new Producto("Batata", "Dulce", 30, "DB");
 const item21 = new Producto("Chocotorta", "Postre", 10, "CHOCO");
 const item22 = new Producto("Bomba oreo", "Postre", 10, "BOMB");
 const item23 = new Producto("Brownie explotado", "Postre", 10, "BROW");
-const item24 = new Producto("Vegano", "Postre", 10, "VEfGAN");
+const item24 = new Producto("Vegano", "Postre", 10, "VEGAN");
 let productos = [
   item1,
   item2,
@@ -57,25 +57,34 @@ let productos = [
   item23,
   item24,
 ];
-let total = 0;
+//Funcion para agregar item al
 const botonesParaAgregar = document.querySelectorAll(".agregar");
 botonesParaAgregar.forEach((boton) => {
   boton.addEventListener("click", agregarCarrito);
 });
+
 const carrito = [];
+
 function agregarCarrito(event) {
+  let list=true;
   const idDelBoton = event.target.id;
-  console.log("Se hizo clic en el botón con ID:", idDelBoton);
+  const cantidadValorElemento = document.querySelector('.cantidadValor');
+  const cantidadValor = parseInt(cantidadValorElemento.textContent); // Obtener el valor de cantidadValor y convertirlo a número
+  console.log("Se hizo clic en el botón con ID:", idDelBoton,cantidadValor);
   let productoElegido = buscoProducto(idDelBoton);
   for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].identificador === idDelBoton) {
-      alert("El item ya se encuentra en el carrito");
+      // alert("El item ya se encuentra en el carrito");
+      Swal.fire({
+        title: '¡El producto ya se encuentra en el carrito!',
+        icon:'error',
+      })
       carrito.splice(i, 1);
+      list=false;
     }
   }
-
   carrito.push(productoElegido);
-  sumarProductoAlCarritoMenu(productoElegido.nombre,productoElegido.categoria);
+  if(list){sumarProductoAlCarritoMenu(productoElegido.nombre,cantidadValor);}
 }
 
 function buscoProducto(ID) {
@@ -85,7 +94,7 @@ function buscoProducto(ID) {
     }
   }
 }
-function sumarProductoAlCarritoMenu(nombre,categoria) {
+function sumarProductoAlCarritoMenu(nombre,cantidad) {
   //Traemos a el div del carrito
   let carritoMenu = document.getElementById("carritoBar");
   //Agregamos el producto al carrito
@@ -95,21 +104,24 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
   <div class="productosCarrito">
     <div class="productosCarrito">${nombre}</div>
   </div>
-  <div class="info">+Cantidad-</div>
+  <div class="info">${cantidad}</div>
   `;
   //Agregamos al contenedor del carrito
   itemCarritoContenido.className="itemCarrito"
  carritoMenu.append(itemCarritoContenido)
   }
   //Botones de suma y resta
-  let cantidadValor=document.querySelector(".cantidadValor")
+  total=0;
   let botonSuma=document.querySelectorAll(".fa-plus");
   botonSuma.forEach((suma) => {
-    suma.addEventListener("click", sumaClick());
+    suma.addEventListener("click", sumaClick);
   })
-   function sumaClick(){
+   function sumaClick(event){
+    const idDelBotonCant = event.target.id;
+    let cantidadValorCant=querySelectorAll(".cantidadValor")
+    console.log(idDelBotonCant)
           total=total+1
-          cantidadValor.innerHTML=`<p class="totalProduc">${total}</p>`
+          cantidadValorCant.innerHTML=`<p class="totalProduc" class=${idDelBotonCant}>${total}</p>`
           console.log(total)
     }
     let botonResta=document.querySelectorAll(".fa-minus");
@@ -121,7 +133,7 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
        total=total-1
           cantidadValor.innerHTML=`<p class="totalProduc">${total}</p>`
           console.log(total)
-        }  
+        }
      }
 // function sumarProductoAlCarritoMenu(carrito) {
 //   //Traemos a el div del carrito
@@ -132,7 +144,7 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
 //     <div class="productosCarrito">
 //       <div class="productosCarrito">${carrito[index].nombre}</div>
 //     </div>
-//     <div class="info">  
+//     <div class="info">
 //       <i class="fa-solid fa-minus restar-cantidad"></i>
 //         <input type="text" value="1" class="carrito-item-cantidad" disabled>
 //       <i class="fa-solid fa-plus sumar-cantidad"></i></div>
@@ -140,10 +152,10 @@ function sumarProductoAlCarritoMenu(nombre,categoria) {
 //     <i class="fa-solid fa-trash"></i>
 //     </button>
 //   `;
-//       console.log(itemCarritoContenido); 
+//       console.log(itemCarritoContenido);
 //       let contenedor = document.createElement("div")
 //       carritoMenu.innerHTML = itemCarritoContenido;
-    
+
 //    ;}
 //     //Definimos el innerHTML del elemento con una plantilla de texto
 //   }
@@ -195,9 +207,9 @@ function MuestraCategoria(categoriaFiltrada) {
 //   let filtrado=[]
 //   return filtrado= productos.filter(
 //     (elemento) => elemento.categoria.toLowerCase() === categoria.toLowerCase()
-    
+
 //   );
-// } 
+// }
 // //Funcion muestra
 // function MuestraCategoria(categoriaFiltrada){
 //   muestra=[]
@@ -205,7 +217,7 @@ function MuestraCategoria(categoriaFiltrada) {
 //         muestra[index]= categoriaFiltrada[index].nombre
 //        }
 //        return muestra;
-// }    
+// }
 // //Seleccion de productos
 // let suma = 0,
 //  continuar;
@@ -225,52 +237,52 @@ function MuestraCategoria(categoriaFiltrada) {
 //    } while (continuar === "S");
 
 //Pagos
-console.log("La suma de los productos seleccionados es: " + suma);
+// console.log("La suma de los productos seleccionados es: " + suma);
 
-let medio = Number(
-  prompt(
-    "Seleccione su medio de pago:2\n1.Efectivo - 2.Debito - 3.Credito - 4.Qr"
-  )
-);
-let pago;
-switch (medio) {
-  case 1:
-    pago = "efectivo";
-    break;
-  case 2:
-    pago = "debito";
-    break;
-  case 3:
-    pago = "credito";
-    break;
-  case 4:
-    pago = "qr";
-    break;
-  default:
-    alert("No se reconoce medio de pago");
-    break;
-}
-function descuentoPorDocena(cantidadSeleccionada) {
-  if (1 >= cantidadSeleccionada / 12 < 2) {
-    return 0.925;
-  } else if (2 >= cantidadSeleccionada / 12 < 3) {
-    return 0.925;
-  } else if (3 >= cantidadSeleccionada / 12 < 4) {
-    return 0.9;
-  } else if (4 >= cantidadSeleccionada / 12 > 10) {
-    return 0.8;
-  } else {
-    return 1;
-  }
-}
-const precioUnidad=220;
-function pagos(medio, cantidad) {
-  if (medio === "efectivo") {
-    return precioUnidad * cantidad * descuentoPorDocena(cantidad);
-  }
-  else {
-    return precioUnidad * cantidad;
-  }
-}
-let precioAPagar=pagos(pago, suma)
-alert(`El precio a pagar es $${precioAPagar}`)
+// let medio = Number(
+//   prompt(
+//     "Seleccione su medio de pago:2\n1.Efectivo - 2.Debito - 3.Credito - 4.Qr"
+//   )
+// );
+// let pago;
+// switch (medio) {
+//   case 1:
+//     pago = "efectivo";
+//     break;
+//   case 2:
+//     pago = "debito";
+//     break;
+//   case 3:
+//     pago = "credito";
+//     break;
+//   case 4:
+//     pago = "qr";
+//     break;
+//   default:
+//     alert("No se reconoce medio de pago");
+//     break;
+// }
+// function descuentoPorDocena(cantidadSeleccionada) {
+//   if (1 >= cantidadSeleccionada / 12 < 2) {
+//     return 0.925;
+//   } else if (2 >= cantidadSeleccionada / 12 < 3) {
+//     return 0.925;
+//   } else if (3 >= cantidadSeleccionada / 12 < 4) {
+//     return 0.9;
+//   } else if (4 >= cantidadSeleccionada / 12 > 10) {
+//     return 0.8;
+//   } else {
+//     return 1;
+//   }
+// }
+// const precioUnidad=220;
+// function pagos(medio, cantidad) {
+//   if (medio === "efectivo") {
+//     return precioUnidad * cantidad * descuentoPorDocena(cantidad);
+//   }
+//   else {
+//     return precioUnidad * cantidad;
+//   }
+// }
+// let precioAPagar=pagos(pago, suma)
+// alert(`El precio a pagar es $${precioAPagar}`)

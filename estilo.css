@@ -644,7 +644,7 @@ header {
   display: grid;
   grid-row: auto;
   grid-column: 1/4;
-  background-color: #fbbe63;
+  background-color: rgba(231, 230, 246, 0.6862745098);
   width: 100%;
 }
 .productos .carrito-menu #carritoBar .itemCarrito {
@@ -712,11 +712,13 @@ header {
   box-shadow: 5px 5px 8px #073e53;
   position: relative;
   display: grid;
-  grid-template-rows: 6;
+  grid-template-rows: 4;
+  grid-template-columns: repeat 2, 1fr;
 }
 .productos .producto .item-producto p {
   width: auto;
   grid-row: 1;
+  grid-column: 1/3;
   color: #000000;
   font-family: titulos;
   text-shadow: 1px 1px 2px #e7e6f6;
@@ -726,33 +728,38 @@ header {
   align-self: center;
 }
 .productos .producto .item-producto .descripcion {
+  grid-column: 1/3;
   grid-row: 2/3;
   color: #220c10;
   opacity: 0;
 }
 .productos .producto .item-producto .cantidad {
-  width: 50%;
+  width: 100%;
   margin-inline: auto;
   display: flex;
   background-color: #08678c;
   justify-content: space-around;
-  height: 25px;
-  grid-row: 3/5;
+  align-items: center;
+  height: 100%;
+  grid-row: 3/4;
+  grid-column: 1;
 }
 .productos .producto .item-producto .cantidad .cantidadValor {
   background-color: #e7e6f6;
   width: 30%;
-  word-wrap: break-word;
 }
 .productos .producto .item-producto .cantidad .cantidadValor .totalProduc {
   padding-top: 0;
+  margin-bottom: 0;
   font-size: medium;
   color: #000000;
 }
 .productos .producto .item-producto .agregar {
-  background-color: #fbbe63;
+  border: 0;
   width: 100%;
-  grid-row: 5/6;
+  background-color: #fbbe63;
+  margin-inline: auto;
+  grid-row: 3/4;
 }
 .productos .producto .item-producto:hover {
   filter: grayscale(0.4);
