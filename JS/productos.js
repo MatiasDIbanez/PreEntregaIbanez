@@ -68,23 +68,28 @@ const carrito = [];
 function agregarCarrito(event) {
   let list=true;
   const idDelBoton = event.target.id;
-  const cantidadValorElemento = document.querySelector('.cantidadValor');
-  const cantidadValor = parseInt(cantidadValorElemento.textContent); // Obtener el valor de cantidadValor y convertirlo a número
-  console.log("Se hizo clic en el botón con ID:", idDelBoton,cantidadValor);
+  console.log(idCant=idDelBoton+"Cant")
+  const cantidadValorElemento = document.getElementById(idCant).value;
+  console.log("Se hizo clic en el botón con ID:", idDelBoton,cantidadValorElemento);
   let productoElegido = buscoProducto(idDelBoton);
   for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].identificador === idDelBoton) {
       // alert("El item ya se encuentra en el carrito");
-      Swal.fire({
-        title: '¡El producto ya se encuentra en el carrito!',
-        icon:'error',
-      })
-      carrito.splice(i, 1);
-      list=false;
+      
+      // Swal.fire({
+      //   title: '¡El producto ya se encuentra en el carrito!',
+      //   icon:'error',
+      // })
+      if( ! confirm("El Producto ya se encuentra en el carrito.Desea agregarlo otra vez?")){
+        carrito.push(productoElegido)
+      }
+      else {carrito.splice(i, 1);
+      list=false;}
+      
     }
   }
   carrito.push(productoElegido);
-  if(list){sumarProductoAlCarritoMenu(productoElegido.nombre,cantidadValor);}
+  if(list){sumarProductoAlCarritoMenu(productoElegido.nombre,cantidadValorElemento);}
 }
 
 function buscoProducto(ID) {
@@ -116,24 +121,27 @@ function sumarProductoAlCarritoMenu(nombre,cantidad) {
   botonSuma.forEach((suma) => {
     suma.addEventListener("click", sumaClick);
   })
-   function sumaClick(event){
-    const idDelBotonCant = event.target.id;
-    let cantidadValorCant=querySelectorAll(".cantidadValor")
-    console.log(idDelBotonCant)
-          total=total+1
-          cantidadValorCant.innerHTML=`<p class="totalProduc" class=${idDelBotonCant}>${total}</p>`
-          console.log(total)
-    }
+    function sumaClick(event){
+      let buttonClicked = event.target;
+      let selector = buttonClicked.parentElement;
+      console.log(selector.getElementsByClassName('carrito-item-cantidad')[0].value);
+      let cantidadActual = selector.getElementsByClassName('carrito-item-cantidad')[0].value;
+      cantidadActual++;
+      selector.getElementsByClassName('carrito-item-cantidad')[0].value = cantidadActual;
+      }
     let botonResta=document.querySelectorAll(".fa-minus");
   botonResta.forEach((resta) => {
     resta.addEventListener("click", restaClick);
   })
-   function restaClick(){
-    if (total>0){
-       total=total-1
-          cantidadValor.innerHTML=`<p class="totalProduc">${total}</p>`
-          console.log(total)
-        }
+   function restaClick(event){
+    let buttonClicked = event.target;
+    let selector = buttonClicked.parentElement;
+    console.log(selector.getElementsByClassName('carrito-item-cantidad')[0].value);
+    let cantidadActual = selector.getElementsByClassName('carrito-item-cantidad')[0].value;
+    cantidadActual--;
+    if(cantidadActual>=1){
+        selector.getElementsByClassName('carrito-item-cantidad')[0].value = cantidadActual;
+    }
      }
 // function sumarProductoAlCarritoMenu(carrito) {
 //   //Traemos a el div del carrito

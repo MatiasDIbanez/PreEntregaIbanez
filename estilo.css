@@ -744,11 +744,11 @@ header {
   grid-row: 3/4;
   grid-column: 1;
 }
-.productos .producto .item-producto .cantidad .cantidadValor {
+.productos .producto .item-producto .cantidad .carrito-item-cantidad {
   background-color: #e7e6f6;
   width: 30%;
 }
-.productos .producto .item-producto .cantidad .cantidadValor .totalProduc {
+.productos .producto .item-producto .cantidad .carrito-item-cantidad .totalProduc {
   padding-top: 0;
   margin-bottom: 0;
   font-size: medium;
