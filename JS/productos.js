@@ -57,14 +57,12 @@ let productos = [
   item23,
   item24,
 ];
-//Funcion para agregar item al
+//Funcion para agregar item 
 const botonesParaAgregar = document.querySelectorAll(".agregar");
 botonesParaAgregar.forEach((boton) => {
   boton.addEventListener("click", agregarCarrito);
 });
-
 const carrito = [];
-
 function agregarCarrito(event) {
   let list=true;
   const idDelBoton = event.target.id;
@@ -75,17 +73,12 @@ function agregarCarrito(event) {
   for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].identificador === idDelBoton) {
       // alert("El item ya se encuentra en el carrito");
-      
-      // Swal.fire({
-      //   title: '¡El producto ya se encuentra en el carrito!',
-      //   icon:'error',
-      // })
-      if( ! confirm("El Producto ya se encuentra en el carrito.Desea agregarlo otra vez?")){
-        carrito.push(productoElegido)
-      }
-      else {carrito.splice(i, 1);
-      list=false;}
-      
+      Swal.fire({
+       title: '¡El producto ya se encuentra en el carrito!',
+        icon:'error',
+      }) 
+      carrito.splice(i, 1);
+      list=false;
     }
   }
   carrito.push(productoElegido);
@@ -99,6 +92,7 @@ function buscoProducto(ID) {
     }
   }
 }
+//Funcion para el DOM de carrito
 function sumarProductoAlCarritoMenu(nombre,cantidad) {
   //Traemos a el div del carrito
   let carritoMenu = document.getElementById("carritoBar");
@@ -110,13 +104,20 @@ function sumarProductoAlCarritoMenu(nombre,cantidad) {
     <div class="productosCarrito">${nombre}</div>
   </div>
   <div class="info">${cantidad}</div>
+  <button class="btn-eliminar">
+  <i class="fa fa-trash"></i>
+  </button>
   `;
   //Agregamos al contenedor del carrito
   itemCarritoContenido.className="itemCarrito"
  carritoMenu.append(itemCarritoContenido)
+   //Agregamos eliminar producto
+ let botonEliminar=document.getElementsByClassName("btn-eliminar");
+for (const boton of botonEliminar){
+  boton.addEventListener('click',eliminarClick)
+}
   }
-  //Botones de suma y resta
-  total=0;
+  //Botones de suma y resta para productos
   let botonSuma=document.querySelectorAll(".fa-plus");
   botonSuma.forEach((suma) => {
     suma.addEventListener("click", sumaClick);
@@ -143,73 +144,19 @@ function sumarProductoAlCarritoMenu(nombre,cantidad) {
         selector.getElementsByClassName('carrito-item-cantidad')[0].value = cantidadActual;
     }
      }
-// function sumarProductoAlCarritoMenu(carrito) {
-//   //Traemos a el div del carrito
-//   let carritoMenu = document.getElementById("carritoBar");
-//   //Agregamos el producto al carrito
-//   for(let index = 0; index < carrito.length; index++){
-//       let itemCarritoContenido = `
-//     <div class="productosCarrito">
-//       <div class="productosCarrito">${carrito[index].nombre}</div>
-//     </div>
-//     <div class="info">
-//       <i class="fa-solid fa-minus restar-cantidad"></i>
-//         <input type="text" value="1" class="carrito-item-cantidad" disabled>
-//       <i class="fa-solid fa-plus sumar-cantidad"></i></div>
-//     <button class="btn-eliminar">
-//     <i class="fa-solid fa-trash"></i>
-//     </button>
-//   `;
-//       console.log(itemCarritoContenido);
-//       let contenedor = document.createElement("div")
-//       carritoMenu.innerHTML = itemCarritoContenido;
-
-//    ;}
-//     //Definimos el innerHTML del elemento con una plantilla de texto
-//   }
-
-//>Funcion para el DOM de carrito
-// function llenarCarrito(carrito){
-//   let itemCarritoContenido = `
-//     <div class="productosCarrito">
-//       <div class="categoria-i">${carrito.categoria}</div>
-//       <div class="productosCarrito">${carrito.nombre}</div>
-//     </div>
-//     <div class="info">
-//       <i class="fa-solid fa-minus restar-cantidad"></i>
-//         <input type="text" value="1" class="carrito-item-cantidad" disabled>
-//       <i class="fa-solid fa-plus sumar-cantidad"></i></div>
-//     <button class="btn-eliminar">
-//     <i class="fa-solid fa-trash"></i>
-//     </button>
-//   `
-//   let item.innerHTML = itemCarritoContenido;
-//   carritoMenu.append(item);
-
-// }
-//Funcion muestra
-function MuestraCategoria(categoriaFiltrada) {
-  muestra = [];
-  for (let index = 0; index < categoriaFiltrada.length; index++) {
-    muestra[index] = categoriaFiltrada[index].nombre;
-  }
-  return muestra;
+//Eliminar producto del carrito
+let botonEliminar=document.getElementsByClassName("btn-eliminar");
+for (const boton of botonEliminar){
+  boton.addEventListener('click',eliminarClick)
 }
-// carritoMenu.innerHTML="<div>me lo agrega</div>";
-// document.carrito-menu.appendChild(carritoMenu)
+// let botonEliminar=document.getElementsByClassName("btn-eliminar")[0].addEventListener("click", eliminarClick);
 
-//  let suma.onclick = function sumaClick(){
-//      total=total+1
-//      contador.innerHTML=`<p>${total}}</p>`
-//      console.log(total)
-//  }
-//  let resta=document.getElementsByClassName('restaClick')
-//  resta.onclick = function restaClick(){
-//      if(total>0){
-//          total=total-1
-//          console.log(total)
-//   }
-//  }
+ function eliminarClick(event){
+  let buttonClicked = event.target;
+  console.log(buttonClicked.id)
+  buttonClicked.parentElement.remove()
+  console.log(carrito.pop())
+   }
 //Funcion filtrado
 // function FilterCategoria(categoria){
 //   let filtrado=[]

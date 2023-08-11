@@ -660,6 +660,10 @@ header {
   width: 30%;
   grid-column: 3/4;
 }
+.productos .carrito-menu #carritoBar .itemCarrito .btn-eliminar {
+  grid-column: 4/5;
+  align-self: center;
+}
 .productos .producto-menu {
   margin: 10px;
   max-width: 850px;
@@ -762,7 +766,6 @@ header {
   grid-row: 3/4;
 }
 .productos .producto .item-producto:hover {
-  filter: grayscale(0.4);
   scale: 1.05;
 }
 .productos .producto .item-producto:hover .descripcion {
